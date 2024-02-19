@@ -1,0 +1,204 @@
+// Fonts
+$outfit-font: "Outfit", sans-serif;
+$youngSerif-font: "Young Serif", serif;
+$fontSize: 16px;
+
+// Colors
+$Nutmeg: hsl(14, 45%, 36%);
+$DarkRaspberry: hsl(332, 51%, 32%);
+
+$White: hsl(0, 0%, 100%);
+$RoseWhite: hsl(330, 100%, 98%);
+$Eggshell: hsl(30, 54%, 90%);
+$LightGrey: hsl(30, 18%, 87%);
+$WengeBrown: hsl(30, 10%, 34%);
+$DarkCharcoal: hsl(24, 5%, 18%);
+
+%bullets {
+    font-family: $outfit-font;
+    font-size: 16px;
+    color: $WengeBrown;
+    padding: 5px 0;
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: black;
+        top: 50%;
+        left: -25px;
+        transform: translateY(-50%);
+    }
+}
+%heading {
+    color: $Nutmeg;
+    font-family: $youngSerif-font;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $Eggshell;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .recipe {
+        width: 55%;
+        background-color: $White;
+        margin-top: 100px;
+        padding: 35px;
+        border-radius: 20px;
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        h1 {
+            font-family: $youngSerif-font;
+            font-size: 38px;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        h4 {
+            font-weight: normal;
+            font-family: $outfit-font;
+        }
+        .prepare-time {
+            background-color: $RoseWhite;
+            padding: 20px;
+            border-radius: 15px;
+            p {
+                padding: 0;
+                margin: 0;
+                font-size: 18px;
+                font-weight: bold;
+                font-family: $outfit-font;
+                color: $DarkRaspberry;
+            }
+            > ul {
+                list-style: none;
+                margin: 16px 0 0 0;
+                padding: 0 0 0 30px;
+                li {
+                    @extend %bullets;
+                    span {
+                        color: $DarkCharcoal;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .ingredients {
+            h2 {
+                @extend %heading;
+            }
+            ul {
+                list-style: none;
+                padding: 0 0 12px 35px;
+                li {
+                    @extend %bullets;
+                    &::before {
+                        background-color: $Nutmeg;
+                    }
+                }
+            }
+        }
+        .instructions {
+            h2 {
+                @extend %heading;
+            }
+            ol {
+                padding: 0 0 20px 18px;
+                counter-reset: item;
+                margin-left: 0;
+                li {
+                    display: block;
+                    font-family: $outfit-font;
+                    font-size: 16px;
+                    color: $WengeBrown;
+                    padding: 5px 0;
+                    span {
+                        font-weight: bold;
+                        color: $DarkCharcoal;
+                    }
+                    &::before {
+                        display: inline-block;
+                        content: counter(item) ".";
+                        counter-increment: item;
+                        margin-right: 20px;
+                        margin-left: -18px;
+                        color: $Nutmeg;
+                        font-weight: bold;
+                    }   
+                }
+            }
+        }
+        .nutrition {
+            h2 {
+                @extend %heading;
+                margin-bottom: 10px;
+            }
+            p {
+                font-family: $outfit-font;
+                color: $WengeBrown;
+            }
+            .item {
+                font-size: 16px;
+                font-family: $outfit-font;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+                .item-name {
+                    margin-left: 20px;
+                    color: $WengeBrown;
+                    flex: 1;
+                }
+                .quantity {
+                    color: $Nutmeg;
+                    font-weight: bold;
+                    flex: 1;
+                    margin-left: 0%;
+                }
+            }
+        }
+    }
+}
+
+hr {
+    border: 1px solid #eee;
+}
+@media (max-width: 800px) {
+    .recipe {
+        width: 70% !important;
+    }
+}
+@media (max-width: 600px) {
+    .recipe {
+        width: 80% !important;
+        h1 {
+            font-size: 30px !important;
+        }
+    }
+}
+@media (max-width: 400px) {
+    body {
+        display: block !important;
+        background-color: white;
+        .recipe {
+            width: 100% !important;
+            margin-top: 0px !important;
+            padding: 0px;
+            img {
+                border-radius: 0px;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}
